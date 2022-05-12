@@ -25,9 +25,10 @@ def help(update: Update, context: CallbackContext) -> None:
     commands_with_descriptions = []
     for handler_list in updater.dispatcher.handlers.values():
         for handler in handler_list:
-            command_repr = "\n".join(["/" + comm for comm in handler.command])
-            docstring = handler.callback.__doc__
-            commands_with_descriptions.append(command_repr + "\n" + text_effects.italics(docstring))
+            if isinstance(handler, CommandHandler):
+                command_repr = "\n".join(["/" + comm for comm in handler.command])
+                docstring = handler.callback.__doc__
+                commands_with_descriptions.append(command_repr + "\n" + text_effects.italics(docstring))
     delimiter = "\n" + text_effects.bold("=" * 32) + "\n"
     update.message.reply_markdown_v2(delimiter.join(commands_with_descriptions))
 
