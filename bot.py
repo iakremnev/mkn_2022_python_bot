@@ -2,14 +2,17 @@ from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext, filters
 from telegram.ext import MessageHandler
 import text_effects
-
+from dotenv import load_dotenv
+import os
 import random
+
+load_dotenv()
+TOKEN = os.environ["TOKEN"]
+
 
 with open("stopwords-ru.txt") as f:
     STOP_WORDS = f.read().split()
 STOP_WORDS = set(STOP_WORDS)
-
-TOKEN = ...
 
 
 def hello(update: Update, context: CallbackContext) -> None:
