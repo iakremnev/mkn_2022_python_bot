@@ -26,7 +26,7 @@ def help(update: Update, context: CallbackContext) -> None:
             docstring = handler.callback.__doc__
             commands_with_descriptions.append(command_repr + "\n" + text_effects.italics(docstring))
     delimiter = "\n" + text_effects.bold("=" * 32) + "\n"
-    update.message.reply_text(delimiter.join(commands_with_descriptions))
+    update.message.reply_markdown_v2(delimiter.join(commands_with_descriptions))
 
 
 def what_is(update: Update, context: CallbackContext) -> None:
